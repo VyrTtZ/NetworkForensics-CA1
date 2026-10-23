@@ -48,7 +48,26 @@ CVEs	: CVE(2021-34527)			// CVE-2025-68284
 
 Vulnerability based on Win Print Spooler, the service doesnt handle privileged file operations well. This attack is a DLL injection through SMB share with the malicious DLL to the PrintSpooler service through the RPC where the path to the DLL which is the SMB share is sent and the Spooler allows to add drivers from non admin users allowing for the execution of DLLs there (RpcAddPrinterDeriverEx()). Spooler executes it with Sys privs basically giving the attackers DLL no limitations.
 
-\section{CVE 2025-68284}
+\section{CVE-2025-68284}
+
+Bounds checks for the \texttt{len} field in \texttt{handle\_auth\_session\_key()} are
+missing, allowing a buffer overflow that may lead to code execution via a
+specially crafted payload.
+
+In the code referenced below, the session key is copied without an
+out-of-bounds (OOB) check beforehand. There is no validation of \texttt{len}
+before it is passed as the \texttt{size} parameter to
+\texttt{memcpy(dest, src, size)} --- the attacker-controlled input length is
+used directly.
+
+This affects lines 600--625 of the file below. Exploitation requires that the
+\texttt{libceph} function handling incoming network packets receives a
+crafted payload that overflows the bounds of \texttt{session\_key}, resulting
+in an out-of-bounds write.
+
+\begin{verbatim}
+https://elixir.bootlin.com/linux/v5.11/source/net/ceph/auth_x.c
+\end{verbatim}
 
 
 
