@@ -1,0 +1,134 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+\usepackage{blindtext}
+
+\usepackage{authblk}
+%++++++++++++++++++++++++++++++++++++++++
+
+
+\begin{document}
+
+\title{\color{blue}Network Forensics Assignment 1}
+\author{\color{blue}J. Bloggs}
+\affil{Student Number 2000000}
+\affil{20000000@mail.wit.ie} 
+\affil{Waterford Institute of Technology, Ireland}
+%    \email{2000000@mail.wit.ie}
+\date{\color{blue}\today}
+\maketitle
+
+
+
+\begin{abstract}
+Use may use this template to submit Assignment 1. \textbf{Special notes:} Remember to put your name in the filename!
+\end{abstract}
+
+
+
+\section{Introduction}
+
+How did you go about the assignment. What was your methodology. What were the steps you took. What OSs and attacks did you choose. Why did you got for these. What are the highlights of the findings of the assignment.
+
+Systems	: Win 10 1809 ver17763.1012 // Linux Fedora 34 (Kernel 5.11)
+CVEs	: CVE(2021-34527)			// CVE-2025-68284
+
+\section{CVE 2021-34527}
+
+Vulnerability based on Win Print Spooler, the service doesnt handle privileged file operations well. This attack is a DLL injection through SMB share with the malicious DLL to the PrintSpooler service through the RPC where the path to the DLL which is the SMB share is sent and the Spooler allows to add drivers from non admin users allowing for the execution of DLLs there (RpcAddPrinterDeriverEx()). Spooler executes it with Sys privs basically giving the attackers DLL no limitations.
+
+\section{CVE 2025-68284}
+
+
+
+
+
+
+
+
+
+\section{Tools Selected}
+
+You could include the tools used in a table as seen in \ref{tab:my_tools}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}\hline
+        Tool & Use \\ \hline
+         Tool 1 & Used for...\\
+         Tool 2 & Used for...\\ \hline
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_tools}
+\end{table}
+
+
+
+\section{The Attack Phase 1}
+
+What information could you gather about the machines/network you are attacking.
+
+\subsection{Finding 1}
+\subsection {Finding 2}
+\subsection{Summary}
+
+
+
+\section{The Attack Phase 2}
+
+What information could you gather about the technologies being used that are vulnerable?
+
+\section{The Attack Phase 4}
+
+How did you use the exploit.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{exam-flow.png}
+    \caption{Sample Figure}
+    \label{fig:exam-flow}
+\end{figure}
+
+You can see how to refer to a sample Figure \ref{fig:exam-flow} here.
+
+
+\section{The Attack Phase 5}
+
+What post exploitation did you perform.
+
+
+\section{Conclusion}
+
+Summarise your findings. Highlight anything that stood out, was very interesting or was unexpected.
+
+
+
+
+%++++++++++++++++++++++++++++++++++++++++
+% References section will be created automatically 
+% with inclusion of "thebibliography" environment
+% as it shown below. See text starting with line
+% \begin{thebibliography}{99}
+% Note: with this approach it is YOUR responsibility to put them in order
+% of appearance.
+
+\begin{thebibliography}{99}
+
+Keep track of your references here.
+
+\bibitem % put your bibitem info here
+
+\end{thebibliography}
+
+
+\end{document}
